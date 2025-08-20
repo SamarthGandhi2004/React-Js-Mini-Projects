@@ -5,8 +5,23 @@ import { Input } from './ui/input'
 
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearUser } from './redux/Slices/authSlice'
+import { signOut } from 'firebase/auth'
+import { auth } from '@/Firebase'
 
 const Header = () => {
+  const{user}=useSelector((state)=>state.auth);
+  const dispatch=useDispatch();
+    const handleLogout = async () => {
+      try {
+        await signOut(auth);
+        dispatch(clearUser());  // clear Redux user
+        console.log("User logged out");
+      } catch (error) {
+        console.error("Logout failed:", error.message);
+      }
+    };
   return (
      <header className="sticky top-0 z-50 bg-white/70 backdrop-blur-sm border-b">
       <div className="container mx-auto px-4 py-3 flex items-center gap-6">
@@ -34,7 +49,15 @@ const Header = () => {
 
         <div className="ml-3 flex items-center gap-2">
           <Badge>New</Badge>
-          <Button variant="ghost">Sign in</Button>
+{user?(<>
+          <button
+            onClick={handleLogout}
+            className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
+          >
+            Logout
+          </button>
+        </>):(<> <Link to="/authenticate"> <Button variant="ghost">Sign in</Button></Link></>)}
+        
         </div>
       </div>
     </header>

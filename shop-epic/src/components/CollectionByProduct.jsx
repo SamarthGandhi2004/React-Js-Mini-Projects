@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategoryBySlug } from "./redux/Slices/CategoriesSlice";
 import { addToCart } from "./redux/Slices/CartSlice";
@@ -47,6 +47,7 @@ const CollectionByProduct = () => {
 
               {/* CTA */}
               <Button className="w-full mt-4" onClick={()=>dispatch(addToCart(item))}>Add to Cart</Button>
+             <Link to={`/product/${item.id}`}><Button className="w-full mt-4">View</Button></Link> 
             </CardContent>
           </Card>
         ))}

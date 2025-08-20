@@ -1,8 +1,11 @@
 import React from 'react'
 import { Avatar } from './ui/avatar'
 import { Button } from './ui/button'
+import { useSelector } from 'react-redux'
 
 const Profile = () => {
+  const {user}=useSelector((state)=>state.auth);
+
   return (
       <div className="container mx-auto px-4 py-10">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -12,8 +15,8 @@ const Profile = () => {
               <div className="w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center">SG</div>
             </Avatar>
             <div>
-              <div className="font-semibold">Samarth Gandhi</div>
-              <div className="text-sm text-slate-500">Member since 2024</div>
+              <div className="font-semibold">{user.email}</div>
+              <div className="text-sm text-slate-500">id:{user.uid}</div>
             </div>
           </div>
 

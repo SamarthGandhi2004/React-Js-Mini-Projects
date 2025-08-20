@@ -13,20 +13,24 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import CollectionByProduct from './components/CollectionByProduct'
-
-
+import {app} from "./Firebase"
+import {getAuth,createUserWithEmailAndPassword} from "firebase/auth"
+import UserSignInOut from './components/UserSignInOut'
+const auth=getAuth(app)
 function App() {
- 
-// function ProductDetails(){
-//   const params = new URLSearchParams(window.location.pathname.replace(/^.*product\//, ''))
-//   // We rely on react-router's route param in the ProductPage component below; this helper is unused here.
-//   return null
-// }
+ const signup=()=>{
+  createUserWithEmailAndPassword(
+    auth,
+    "samarthgandhi@gmail.com",
+    "sam@123"
+  ).then((value)=>console.log(value));
+ }
   return (
 <>
  <BrowserRouter>
       <div className="min-h-screen bg-slate-50 text-slate-900">
         <Header />
+        <Button onClick={signup} >click</Button>
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -44,6 +48,7 @@ function App() {
             <Route path="/shipping" element={<MiscPage title="Shipping" />} />
             <Route path="/returns" element={<MiscPage title="Returns" />} />
             <Route path="*" element={<Home />} />
+            <Route path='/authenticate' element={<UserSignInOut/>}/>
           </Routes>
         </main>
         <Footer />

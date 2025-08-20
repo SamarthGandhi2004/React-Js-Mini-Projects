@@ -20,11 +20,13 @@ import productsReducers from "./Slices/ProductSlice";
 import categoriesReducers from "./Slices/CategoriesSlice";
 import { combineReducers } from "redux";
 import cartReducer from "./Slices/CartSlice"
+import authReducer from "./Slices/authSlice"
 // 1️⃣ Combine reducers
 const rootReducer = combineReducers({
   products: productsReducers,
   categories: categoriesReducers,
-  cart:cartReducer
+  cart:cartReducer,
+  auth:authReducer
 });
 
 // 2️⃣ Persist config

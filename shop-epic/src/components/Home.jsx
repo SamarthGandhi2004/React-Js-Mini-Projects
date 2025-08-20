@@ -81,7 +81,7 @@ const Home = () => {
         <h3 className="text-lg font-semibold mb-4">Top categories</h3>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {categories.map((category)=>(
- <Link to="/collections/sports" className="bg-white p-4 rounded-lg shadow text-center">{category.name}</Link>
+ <Link to={`Collections/${category.slug}`} className="bg-white p-4 rounded-lg shadow text-center">{category.name}</Link>
           ))}
          
       
