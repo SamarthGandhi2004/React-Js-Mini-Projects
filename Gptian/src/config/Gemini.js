@@ -5,7 +5,7 @@ import { GoogleGenAI } from "@google/genai";
 import { useContext } from "react";
 import { Context } from "../context/Context";
 
-const apiKey ="AIzaSyDeKfGdm1TXGXmT6uUzPY0XMilvkk9khyU";
+const apiKey = import.meta.env.VITE_API_KEY;
 
 if (!apiKey) {
   console.error("❌ Gemini API key missing. Add REACT_APP_GEMINI_API_KEY in .env");
